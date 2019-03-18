@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import demo.juster.spboot.error.ErrorConfig;
 
 @Controller
-@EnableAutoConfiguration//帮助SpringBoot应用将所有符合条件的@Configuration配置都加载到当前SpringBoot创建并使用的IoC容器
 @EnableTransactionManagement
 @SpringBootApplication
 @ComponentScan("demo.juster.spboot")//因默认扫描启动类目录，因此加入componentScan
