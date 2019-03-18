@@ -23,3 +23,12 @@ public class ErrorDemoController {
 		throw new CustomException("100","cusErr");
 	}
 }
+
+
+/*
+ * @ControllerAdvice 拦截异常并统一处理:  https://www.cnblogs.com/magicalSam/p/7198420.html
+ * Spring Boot 自定义错误页面:		https://www.jianshu.com/p/7c94d1ac2092
+ * springboot配置错误页面及全局异常		https://www.cnblogs.com/wangzhuxing/p/10158390.html#_label3_0
+ * 
+ * 
+ */

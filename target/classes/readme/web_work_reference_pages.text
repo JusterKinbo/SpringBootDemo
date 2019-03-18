@@ -1,7 +1,14 @@
+#DB
 Spring Boot 连接MySql数据库 : https://www.cnblogs.com/liangblog/p/5228548.html
-
-Spring Boot中静态资源（JS, 图片）等应该放在什么位置：http://www.cnblogs.com/chry/p/5877979.html
-Spring-Boot 静态文件和页默认放置位置：https://blog.csdn.net/niugang0920/article/details/79422663
 Spring @Column的注解详解：https://www.cnblogs.com/PacinoY/p/7485304.html
 jpa数据库增删改查基本操作：https://blog.csdn.net/zwl18210851801/article/details/78845220
 Maven pom.xml中的元素modules、parent、properties以及import：https://www.cnblogs.com/youzhibing/p/5427130.html
+
+#静态资源
+Spring Boot中静态资源（JS, 图片）等应该放在什么位置：http://www.cnblogs.com/chry/p/5877979.html
+Spring-Boot 静态文件和页默认放置位置：https://blog.csdn.net/niugang0920/article/details/79422663
+
+#Error page
+@ControllerAdvice 拦截异常并统一处理:  https://www.cnblogs.com/magicalSam/p/7198420.html
+Spring Boot 自定义错误页面:		https://www.jianshu.com/p/7c94d1ac2092
+springboot配置错误页面及全局异常		https://www.cnblogs.com/wangzhuxing/p/10158390.html#_label3_0
