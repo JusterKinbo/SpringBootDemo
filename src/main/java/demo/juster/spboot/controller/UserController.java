@@ -3,7 +3,6 @@ package demo.juster.spboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,13 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import demo.juster.spboot.pojo.dao.UserRepository;
 import demo.juster.spboot.pojo.user.User;
 
 @Controller
-@EnableAutoConfiguration
 @RequestMapping("/usr")
 public class UserController {
 
@@ -45,9 +42,6 @@ public class UserController {
 		
 		this.userRepository.saveAndFlush(u);
 		return "saved";
-		
-		
-       
     }
 	
 	@RequestMapping(value="/info/{userName}",method=RequestMethod.GET)
@@ -79,5 +73,6 @@ public class UserController {
 		
 		return "/user/list";//考虑前后缀
 	}
+	
 	
 }

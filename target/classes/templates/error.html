@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>SpringBoot模版渲染</title>
+</head>
+
+<body>
+<h2>ERROR</h2>
+<div>
+	<ul>
+		<li>
+			<span th:text="${url}" ></span>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<span th:text="${exception.message}"></span>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<span th:text="${statcktrace}"></span>
+		</li>
+	</ul>
+</div>
+
+</body>
+</html>

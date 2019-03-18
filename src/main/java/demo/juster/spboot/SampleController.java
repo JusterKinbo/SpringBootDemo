@@ -2,16 +2,20 @@ package demo.juster.spboot;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
+import org.springframework.boot.web.servlet.ErrorPageRegistrar;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.*;
 
+import demo.juster.spboot.error.ErrorConfig;
+
 @Controller
-@EnableAutoConfiguration
+@EnableAutoConfiguration//帮助SpringBoot应用将所有符合条件的@Configuration配置都加载到当前SpringBoot创建并使用的IoC容器
 @EnableTransactionManagement
 @SpringBootApplication
-@ComponentScan("demo.juster.spboot.controller")//因默认扫描启动类目录，因此加入componentScan
+@ComponentScan("demo.juster.spboot")//因默认扫描启动类目录，因此加入componentScan
 public class SampleController {
 	
 	  	@RequestMapping("/")
@@ -26,6 +30,10 @@ public class SampleController {
 	    {
 	        SpringApplication.run(SampleController.class, args);
 	    }
-
+	    //一个配置类中声明该Bean
+	    @Bean
+	    public ErrorPageRegistrar errorPageRegistrar(){
+	        return new ErrorConfig();
+	    }
 }
 
