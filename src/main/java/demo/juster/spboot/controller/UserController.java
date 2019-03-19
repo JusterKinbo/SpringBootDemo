@@ -32,9 +32,9 @@ public class UserController {
     String saveUser()
     {
 		User u = new User();
-		u.setUsername("我是谁123");
+		u.setName("我是谁123");
 		u.setPwd("123456");
-		User u1 = this.userRepository.findByUsername(u.getUsername());
+		User u1 = this.userRepository.findByName(u.getUsername());
 		if(null != u1)
 		{
 			 return "name complicated!";
@@ -49,7 +49,7 @@ public class UserController {
     String home(@PathVariable("userName") String userName)
     {
 		
-			this.userRepository.findByUsername(userName);
+			this.userRepository.findByName(userName);
 		
         return "Hello World!xyz";
     }

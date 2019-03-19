@@ -11,6 +11,6 @@ import demo.juster.spboot.pojo.user.User;
 public interface UserRepository extends JpaRepository<User, String> {
 	
 	@Transactional(propagation=Propagation.REQUIRED) 
-	User findByUsername(String name);
+	User findByName(String name);
 	
 }
