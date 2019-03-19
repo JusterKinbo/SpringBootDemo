@@ -46,17 +46,12 @@
         <form th:action="@{/logout}" method="post">
             <input type="submit" class="btn btn-primary" value="Logout"/>
         </form>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <div sec:authorize="isAuthenticated()">
         <form th:action="@{/user/toAddUser}" method="post">
             <input type="submit" class="btn btn-primary" value="添加用户"/>
         </form>
         <form th:action="@{/user/userlist}" method="post">
             <input type="submit" class="btn btn-primary" value="查看用户列表"/>
-        </form>
-        </div>
-        <div sec:authorize="hasRole('ROLE_USER')">
-        <form th:action="@{/user/userInfo}" method="post">
-            <input type="submit" class="btn btn-primary" value="查看用户信息"/>
         </form>
         </div>
     </div>

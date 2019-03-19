@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -44,11 +45,12 @@ public class UserDemoController {
 	  @RequestMapping("/toAddUser")
 	    public String toAddUser() {
 		  System.out.println("toAddUser:=======");
-		  return "/user/addUser";
+		  return "/user/admin/addUser";
 	  }
 	  
 	  @RequestMapping("/addUser")
-	    public String addUser(String name,String password,String role) {
+	    public ModelAndView addUser(String name,String password,String role) {
+		  ModelAndView mav = new ModelAndView();
 		  try {
 			  String encodePassword = MD5Util.encode(password);
 		        User user = new User(name,encodePassword);
@@ -59,12 +61,21 @@ public class UserDemoController {
 		        user.setRoles(roles);
 		        System.out.println("user:======="+user);
 		        userRepository.save(user);
+		        
+		        
+		        
+		        
 		  }catch(Exception e)
 		  {
 			  e.printStackTrace();
+		  }finally
+		  {
+			  mav.setViewName("/user/userlist");
+			  List<User> users = userRepository.findAll();
+			  mav.addObject("users", users);
 		  }
 	        
-	            return "/user/userlist";
+	            return mav;
 	    }
 
 	  @GetMapping("/index/delete/{id}")	

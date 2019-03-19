@@ -3,14 +3,18 @@ package demo.juster.spboot.error;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /*
  * 异常不同于请求error
+ * @ControllerAdvice 主要处理的就是 controller 层的错误信息，而没有进入 controller 层的错误 @ControllerAdvice 是无法处理的，
+ * 那么我需要另外的一个全局错误处理。==>参考GlobelController
  * */
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,7 +26,8 @@ public class GlobalExceptionHandler {
      */
 	 @ExceptionHandler(Exception.class) // 所有的异常都是Exception子类
 	    public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception e) { // 出现异常之后会跳转到此方法
-	        ModelAndView mav = new ModelAndView("error"); // 设置跳转路径
+		 	System.out.println("发生内部错误"+e);
+	        ModelAndView mav = new ModelAndView("errors/error"); // 设置跳转路径
 //	        mav.setViewName("error");
 	        mav.addObject("statcktrace", e.getStackTrace());
 	        mav.addObject("exception", e); // 将异常对象传递过去
@@ -43,4 +48,5 @@ public class GlobalExceptionHandler {
 	        map.put("msg", ex.getMsg());
 	        return map;
 	    }
+	   
 }
