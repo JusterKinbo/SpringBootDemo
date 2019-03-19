@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import demo.juster.spboot.pojo.user.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
-	
-	@Transactional(propagation=Propagation.REQUIRED) 
+	 
 	User findByName(String name);
+	User findById(Long id);
+	@Transactional(propagation=Propagation.REQUIRED) 
+	void deleteById(Long id);
 	
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <title>用户list</title>
+    <style type="text/css">
+ 
+ 
+        table {
+            margin: 50px auto;
+            border: solid 1px black;
+            width: 1200px;
+        }
+        td{
+            border: solid 1px black;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<script src="/static/jquery-3.3.1.min.js" th:src="@{/jquery-3.3.1.min.js}"></script>
+ 
+<body>
+<h3><a th:href="@{/index/touserForm}">添加</a></h3>
+<h3 sec:authorize="hasRole('ROLE_ADMIN')">欢迎管理员登录</h3>
+<h3 sec:authorize="hasRole('ROLE_USER')">欢迎普通人员员登录</h3>
+<!--   <a  th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">去管理员页面</a> -->
+ 
+<button th:href="@{/logout}">退出登录</button>
+    <div>
+        <table cellpadding="0" cellspacing="0">
+            <caption>个人信息表</caption>
+            <thead>
+ 
+                <td>id</td>
+                <td>账号</td>
+                <td>密码</td>
+                <td>邮箱</td>
+                <td>操作</td>
+ 
+            </thead>
+            <tbody>
+            <tr th:if="${users.size()} eq 0">
+                <td th:colspan="5">暂时没有用户信息</td>
+            </tr>
+            <tr th:each="user:${users}" th:object="${user}">
+                <td th:text="*{id}" id="id">1</td>
+                <td th:text="*{name}" id="name">XYZ</td>
+                <td th:text="*{pwd}" id="pwd">123456</td>
+                <td>后期加入邮箱、手机</td>
+                <td><a th:href="'/user/index/'+*{id}">修改</a>
+                    |
+                    <a th:href="'/user/index/delete/'+*{id}" sec:authorize="hasRole('ROLE_ADMIN')">删除</a></td>
+            </tr>
+            </tbody>
+ 
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>User Info</title>
+</head>
+<body>
+  <h2>用户信息</h2>
+  <div>
+     <ul>
+         <li>
+              <span >User ID:</span><span th:text="${user.id}"></span>
+         </li>
+         <li>
+             <span >User Name:</span><span th:text="${user.username}"></span>
+         </li>
+         <li>
+             <span >User Password:</span><span th:text="${user.pwd}"></span>
+         </li>
+     </ul>
+     <ul>
+     	<li th:if="${user.roles.size()} gt 0" th:each="role:${user.roles}">
+             <span >Role ID:</span><span th:text="${role.id}"></span>
+             <span >Role Name:</span><span th:text="${role.rolename}"></span>
+         </li>
+     </ul>
+     
+      <form th:action="@{/user/userlist}" method="post">
+            <input type="submit" class="btn btn-primary" value="查看用户列表"/>
+      </form>
+   </div>
+</body>
+</html>

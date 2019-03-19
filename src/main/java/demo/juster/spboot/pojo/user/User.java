@@ -78,7 +78,12 @@ public class User implements UserDetails{
 	
 @Override
 public String toString() {
-	return "user's id is:" + this.id + " name is:"+this.name ;
+	String rolesInfo = "";
+	for(Role r : this.roles)
+	{
+		rolesInfo += r + " ";
+	}
+	return "user's id is:" + this.id + " name is:"+this.name +rolesInfo;
 }
 @Override
 public Collection<? extends GrantedAuthority> getAuthorities() {

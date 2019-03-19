@@ -31,4 +31,10 @@ public class Role {
     public void setRolename(String rolename) {
         this.rolename = rolename;
     }
+    
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return "role:"+this.rolename;
+    }
 }

@@ -13,6 +13,8 @@ import demo.juster.spboot.util.MD5Util;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -31,6 +33,13 @@ public class UserDemoController {
 
 	        return "/user/index";
 	    }
+	  
+	  @RequestMapping("/userlist")
+	    public String userLstr(Model model) {
+		  List<User> userList = this.userRepository.findAll();
+		  model.addAttribute("users", userList);
+		  return "/user/userlist";
+	  }
 	  
 	  @RequestMapping("/toAddUser")
 	    public String toAddUser() {
@@ -55,7 +64,20 @@ public class UserDemoController {
 			  e.printStackTrace();
 		  }
 	        
-	            return "/user/index";
+	            return "/user/userlist";
+	    }
+
+	  @GetMapping("/index/delete/{id}")	
+	    public String deleteUser(@PathVariable Long id){
+	        userRepository.deleteById(id);
+	        return "redirect:/user/userlist";
+	    }
+	    @GetMapping("/index/{id}")
+	    public String getUser(Model model,@PathVariable Long id) {
+	        User user = userRepository.findById(id);
+	        System.out.println("用户信息:"+user);
+	        model.addAttribute("user", user);
+	        return "/user/userInfo";
 	    }
 
 }
