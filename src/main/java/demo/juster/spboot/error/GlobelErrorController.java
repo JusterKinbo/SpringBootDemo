@@ -1,5 +1,7 @@
 package demo.juster.spboot.error;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * pringboot中可以使用ControllerAdvice和ExceptionHandler这两个注解来做全局异常，这种方式比较便捷，但是也有一个问题： 
@@ -38,6 +40,7 @@ public class GlobelErrorController extends AbstractErrorController{
     public GlobelErrorController(ErrorAttributes errorAttributes,ServerProperties serverProperties) {
         super(errorAttributes);
         this.errorProperties=serverProperties.getError();
+       
     }
 
     @Override
