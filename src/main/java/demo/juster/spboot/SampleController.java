@@ -3,6 +3,7 @@ package demo.juster.spboot;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
@@ -15,6 +16,7 @@ import demo.juster.spboot.error.ErrorConfig;
 @EnableTransactionManagement
 @SpringBootApplication
 @ComponentScan("demo.juster.spboot")//因默认扫描启动类目录，因此加入componentScan
+@ServletComponentScan//自定义filter加入
 public class SampleController {
 	
 	  	@RequestMapping("/")
