@@ -1,5 +1,7 @@
 package demo.juster.spboot.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,13 +14,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 import demo.juster.spboot.pojo.user.User;
 import demo.juster.spboot.service.SecurityService;
@@ -74,7 +81,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 and().
                 logout().permitAll().invalidateHttpSession(true).
                 deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler()).
-                and().sessionManagement().maximumSessions(3).expiredUrl("/login");
+                and().sessionManagement().maximumSessions(1).expiredUrl("/login").
+                and().invalidSessionUrl("/login");
+        		
+        	
+        		
+		        // 只需要以下配置即可启用记住密码
+		        http.authorizeRequests()
+		                .and()
+		                .rememberMe().tokenValiditySeconds(2*60)
+		                .tokenRepository(persistentTokenRepository()) // 设置数据访问层
+	                    .userDetailsService(Service()); // 设置userDetailsService
     }
     
     @Bean
@@ -120,6 +137,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			}
 		};
     }
+    
+ // 数据源是为了JdbcRememberMeImpl实例而注入的，如果不设置数据源会在登陆的时候抛空指针异常
+    @Autowired
+    @Qualifier("dataSource")
+    DataSource dataSource;
+    
+    /**
+     * 持久化token
+     * 
+     * Security中，默认是使用PersistentTokenRepository的子类InMemoryTokenRepositoryImpl，将token放在内存中
+     * 如果使用JdbcTokenRepositoryImpl，会创建表persistent_logins，将token持久化到数据库
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource); // 设置数据源
+//        tokenRepository.setCreateTableOnStartup(true); // 启动创建表，创建成功后注释掉
+        return tokenRepository;
+    }
+
     
     
 }
