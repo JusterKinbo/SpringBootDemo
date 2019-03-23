@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+     <!-- <meta name="_csrf" th:content="${_csrf.token}"/>
+   default header name is X-CSRF-TOKEN
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>  -->
+</head>
+<body>
+<h1>Spring Boot files upload example</h1>
+<form method="POST" action="/upload/uploadMultifiles" enctype="multipart/form-data">
+    文件1： <input type="file" name="file" /><br/><br/>
+    文件2： <input type="file" name="file" /><br/><br/>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

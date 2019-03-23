@@ -36,5 +36,7 @@ public class SampleController {
 	    public ErrorPageRegistrar errorPageRegistrar(){
 	        return new ErrorConfig();
 	    }
+	    
+
 }
 

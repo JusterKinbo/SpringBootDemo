@@ -10,7 +10,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /*
  * 异常不同于请求error
  * @ControllerAdvice 主要处理的就是 controller 层的错误信息，而没有进入 controller 层的错误 @ControllerAdvice 是无法处理的，
@@ -47,6 +49,12 @@ public class GlobalExceptionHandler {
 	        map.put("code", ex.getCode());
 	        map.put("msg", ex.getMsg());
 	        return map;
+	    }
+	    
+	    @ExceptionHandler(MultipartException.class)
+	    public String handleError1(MultipartException e, RedirectAttributes redirectAttributes) {
+	        redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
+	        return "redirect:/upload/status";
 	    }
 	   
 }

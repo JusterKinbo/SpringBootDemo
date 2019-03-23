@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().
                 //设置静态资源均可以访问
-        		antMatchers("/css/**","/error*", "/js/**","/errors/**","/images/**","/user/index").permitAll().
+        		antMatchers("/css/**","/error*", "/js/**","/errors/**","/images/**","/upload/**","/user/index").permitAll().
                 antMatchers("/user/toAddUser").hasRole("ADMIN").//限制的是请求->非管理员操作时Forbidden403，通过user/index下添加用户进行测试
                 antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')").//任何以"/db/" 开头的URL需要同时具有 "ROLE_ADMIN" 和 "ROLE_DBA"权限的用户才可以访问。
                 antMatchers("/login").permitAll().//放行登录
@@ -84,7 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 and().sessionManagement().maximumSessions(1).expiredUrl("/login").
                 and().invalidSessionUrl("/login");
         		
-        	
+//        		http.csrf().disable();
         		
 		        // 只需要以下配置即可启用记住密码
 		        http.authorizeRequests()
