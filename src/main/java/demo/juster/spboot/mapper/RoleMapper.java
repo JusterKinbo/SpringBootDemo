@@ -11,5 +11,6 @@ public interface RoleMapper {
 	
 	 Role findById(Long i);
 	 List<Role> findAll();
+	 void save(Role r);
 
 }

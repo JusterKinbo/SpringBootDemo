@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.juster.spboot.mapper.UserRoleMapper"><!-- 关联到DAO interface -->
+ 
+    <resultMap id="UserRoleMap" type="UserRole">
+        <result column="user_id" jdbcType="BIGINT" javaType="long" property="user_id" />
+        <result column="role_id" jdbcType="BIGINT" javaType="long" property="role_id" />
+    </resultMap>
+    
+   <insert id="save" parameterType="UserRole">
+   	insert into user_roles(user_id, roles_id) 
+               values(#{user_id}, #{role_id})
+   </insert>
+    
+    <delete id="delete" parameterType="UserRole">
+    	delete ur from user_roles ur where ur.user_id = #{user_id} and ur.roles_id = #{role_id}
+    </delete>
+
+</mapper>

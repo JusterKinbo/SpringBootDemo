@@ -15,6 +15,10 @@
         select * from role
     </select>
     
+    <insert id="save" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+    	insert into role (id,rolename)
+    		values (#{id},#{rolename})
+    </insert>
     
     
 

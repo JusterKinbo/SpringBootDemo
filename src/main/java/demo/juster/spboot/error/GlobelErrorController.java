@@ -1,7 +1,5 @@
 package demo.juster.spboot.error;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +38,7 @@ public class GlobelErrorController extends AbstractErrorController{
     public GlobelErrorController(ErrorAttributes errorAttributes,ServerProperties serverProperties) {
         super(errorAttributes);
         this.errorProperties=serverProperties.getError();
-       
+       log.info("info");
     }
 
     @Override

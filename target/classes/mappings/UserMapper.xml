@@ -48,4 +48,5 @@
               values   (#{id},#{username},#{pwd})  
 	</insert>
 	
+	
 </mapper>
