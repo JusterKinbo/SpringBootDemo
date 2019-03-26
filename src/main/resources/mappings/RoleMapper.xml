@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.juster.spboot.mapper.RoleMapper"><!-- 关联到DAO interface -->
+ 
+    <resultMap id="RoleMap" type="Role">
+        <id column="id" jdbcType="BIGINT" javaType="long" property="id" />
+        <result column="rolename" jdbcType="VARCHAR" javaType="string" property="rolename" />
+    </resultMap>
+    
+    <select id="findById" resultMap="RoleMap">
+        select id,rolename from role r where r.id = #{id}
+    </select>
+    
+    <select id="findAll" resultMap="RoleMap">
+        select * from role
+    </select>
+    
+    
+    
+
+</mapper>

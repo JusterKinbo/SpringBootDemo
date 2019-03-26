@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import demo.juster.spboot.pojo.dao.RoleRepository;
-import demo.juster.spboot.pojo.dao.UserRepository;
+import demo.juster.spboot.mapper.RoleMapper;
+import demo.juster.spboot.mapper.UserMapper;
 import demo.juster.spboot.pojo.user.Role;
 import demo.juster.spboot.pojo.user.User;
 import demo.juster.spboot.util.MD5Util;
@@ -24,10 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserDemoController {
 	
 	  @Autowired
-	  private UserRepository userRepository;
+	  private UserMapper userRepository;
 
 	  @Autowired
-	  private RoleRepository roleRepository;
+	  private RoleMapper roleRepository;
 	    
 	  @RequestMapping("/index")
 	    public String index(Model model) {

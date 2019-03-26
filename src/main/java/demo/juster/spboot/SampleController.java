@@ -1,5 +1,6 @@
 package demo.juster.spboot;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;
@@ -16,6 +17,7 @@ import demo.juster.spboot.error.ErrorConfig;
 @EnableTransactionManagement
 @SpringBootApplication
 @ComponentScan("demo.juster.spboot")//因默认扫描启动类目录，因此加入componentScan
+@MapperScan("demo.juster.spboot.mapper") //扫描的mapper
 @ServletComponentScan//自定义filter加入
 public class SampleController {
 	

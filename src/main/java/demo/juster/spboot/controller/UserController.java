@@ -10,18 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import demo.juster.spboot.pojo.dao.UserRepository;
+import demo.juster.spboot.mapper.UserMapper;
 import demo.juster.spboot.pojo.user.User;
 
 @Controller
 @RequestMapping("/usr")
 public class UserController {
 
-	private UserRepository userRepository;
+	private UserMapper userRepository;
 	
 	@Autowired
-	public UserController(UserRepository userRepository)
+	public UserController(UserMapper userRepository)
 	{
 		this.userRepository = userRepository;
 	}
@@ -40,7 +39,7 @@ public class UserController {
 			 return "name complicated!";
 		}
 		
-		this.userRepository.saveAndFlush(u);
+		this.userRepository.save(u);
 		return "saved";
     }
 	

@@ -4,20 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity
+
 public class User implements UserDetails{
 	
 	/**
@@ -25,16 +17,13 @@ public class User implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Long id;
-	@Column(name="username",length=20,unique=true,nullable=false)
 	private String name;
-	@Column(name="pwd",length=255,nullable=false)
 	private String pwd;
 	
 	//多对多映射，用户角色
-    @ManyToMany(cascade = {CascadeType.PERSIST},fetch = FetchType.EAGER)
+ 
     private List<Role> roles;
 	
 	
@@ -79,10 +68,14 @@ public class User implements UserDetails{
 @Override
 public String toString() {
 	String rolesInfo = "";
-	for(Role r : this.roles)
+	if(this.roles != null)
 	{
-		rolesInfo += r + " ";
+		for(Role r : this.roles)
+		{
+			rolesInfo += r + " ";
+		}
 	}
+	
 	return "user's id is:" + this.id + " name is:"+this.name +rolesInfo;
 }
 @Override
