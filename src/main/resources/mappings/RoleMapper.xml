@@ -20,6 +20,14 @@
     		values (#{id},#{rolename})
     </insert>
     
+    <delete id="delete" parameterType="Role">  
+        delete r from role r where r.id = #{id}  
+	 </delete>  
+	 
+	  <delete id="deleteById" parameterType="long">  
+        delete r from role r where r.id = #{id}  
+	 </delete> 
+    
     
 
 </mapper>

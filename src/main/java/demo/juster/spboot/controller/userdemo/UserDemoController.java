@@ -9,6 +9,7 @@ import demo.juster.spboot.mapper.RoleMapper;
 import demo.juster.spboot.mapper.UserMapper;
 import demo.juster.spboot.pojo.user.Role;
 import demo.juster.spboot.pojo.user.User;
+import demo.juster.spboot.service.interfaces.IUserService;
 import demo.juster.spboot.util.MD5Util;
 
 import org.springframework.stereotype.Controller;
@@ -24,10 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserDemoController {
 	
 	  @Autowired
-	  private UserMapper userRepository;
+	  private IUserService userServicy;
 
-	  @Autowired
-	  private RoleMapper roleRepository;
 	    
 	  @RequestMapping("/index")
 	    public String index(Model model) {
@@ -37,7 +36,7 @@ public class UserDemoController {
 	  
 	  @RequestMapping("/userlist")
 	    public String userLstr(Model model) {
-		  List<User> userList = this.userRepository.findAll();
+		  List<User> userList = this.userServicy.findAllUsers();
 		  model.addAttribute("users", userList);
 		  return "/user/userlist";
 	  }
@@ -60,7 +59,7 @@ public class UserDemoController {
 		        roles.add(role1);
 		        user.setRoles(roles);
 		        System.out.println("user:======="+user);
-		        userRepository.save(user);
+		        userServicy.saveUser(user);
 		        
 		        
 		        
@@ -71,7 +70,7 @@ public class UserDemoController {
 		  }finally
 		  {
 			  mav.setViewName("/user/userlist");
-			  List<User> users = userRepository.findAll();
+			  List<User> users = userServicy.findAllUsers();
 			  mav.addObject("users", users);
 		  }
 	        
@@ -80,12 +79,12 @@ public class UserDemoController {
 
 	  @GetMapping("/index/delete/{id}")	
 	    public String deleteUser(@PathVariable Long id){
-	        userRepository.deleteById(id);
+		  userServicy.deleteUserById(id);
 	        return "redirect:/user/userlist";
 	    }
 	    @GetMapping("/index/{id}")
 	    public String getUser(Model model,@PathVariable Long id) {
-	        User user = userRepository.findById(id);
+	        User user = userServicy.findUserById(id);
 	        System.out.println("用户信息:"+user);
 	        model.addAttribute("user", user);
 	        return "/user/userInfo";

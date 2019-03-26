@@ -18,5 +18,10 @@ mapper与interface未能绑定，[解决方案](https://www.cnblogs.com/lfm60150
 ### mybatis常用jdbcType数据类型
 [reference](https://www.cnblogs.com/lixuwu/p/5916585.html)  
 
+### mysql delete别名
+delete ur from user_roles ur where ur.user_id=1 and ur.roles_id=2;
+[reference](https://www.cnblogs.com/wuyun-blog/p/6178303.html)
 
+### 多表连接删除功能
+[reference](https://www.jb51.net/article/107813.htm)
 

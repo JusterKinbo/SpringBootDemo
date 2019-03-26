@@ -40,13 +40,24 @@
 	  </select>
 	  
 	  <delete id="deleteById" parameterType="int">  
-        delete from user u where u.id = #{id}  
+        delete u from user u where u.id = #{id}  
 	  </delete>  
 
+	<delete id="delete" parameterType="User">  
+        delete u from user u where u.id = #{id}  
+	  </delete>  
+	  
 	<insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
 		insert into user (id,username,pwd)  
               values   (#{id},#{username},#{pwd})  
 	</insert>
 	
-	
+	<update id="update" parameterType="User">
+		update user 
+		 <trim prefix="set" suffixOverrides=",">
+		  <if test="username!=null">username=#{username},</if>
+		  <if test="pwd!=null">pwd=#{pwd},</if>
+		 </trim>
+		where id = #{id}
+	</update>
 </mapper>

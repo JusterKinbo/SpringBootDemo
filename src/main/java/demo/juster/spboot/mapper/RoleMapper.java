@@ -12,5 +12,7 @@ public interface RoleMapper {
 	 Role findById(Long i);
 	 List<Role> findAll();
 	 void save(Role r);
+	 void delete(Role r);
+	 void deleteById(Long id);
 
 }

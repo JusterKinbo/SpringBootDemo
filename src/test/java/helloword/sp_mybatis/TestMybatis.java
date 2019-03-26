@@ -41,7 +41,23 @@ public class TestMybatis {
 	@Autowired
 	IUserService ussv;
 	
-	@Test
+//	@Test
+	public void testUserDelete()
+	{
+		User u = ussv.findUserById((long) 21);
+		ussv.deleteUser(u);
+	}
+	
+//	@Test
+	public void testUserUpdate()
+	{
+		User u = ump.findById((long) 11);
+		u.setName("new-lala5");
+		u.setPwd(null);
+		ump.update(u);
+	}
+	
+//	@Test //级联保存
 	public void testUserSave()
 	{
 		try {
@@ -59,6 +75,7 @@ public class TestMybatis {
 		}
 		
 	}
+	
 	
 //	@Test
 	public void testUserRole()

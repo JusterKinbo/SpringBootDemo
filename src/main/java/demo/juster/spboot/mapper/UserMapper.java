@@ -18,5 +18,7 @@ public interface UserMapper {
     
     List<User> findAll();
     void deleteById(Long id);
+    void delete(User u);
     void save(User u);
+    void update(User u);
 }

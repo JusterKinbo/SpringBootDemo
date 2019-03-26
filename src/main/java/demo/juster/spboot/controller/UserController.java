@@ -12,17 +12,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import demo.juster.spboot.mapper.UserMapper;
 import demo.juster.spboot.pojo.user.User;
+import demo.juster.spboot.service.imps.UserService;
+import demo.juster.spboot.service.interfaces.IUserService;
 
 @Controller
 @RequestMapping("/usr")
 public class UserController {
 
-	private UserMapper userRepository;
+	private IUserService userService;
 	
 	@Autowired
-	public UserController(UserMapper userRepository)
+	public UserController(IUserService userService)
 	{
-		this.userRepository = userRepository;
+		this.userService = userService;
 	}
 	
 
@@ -33,13 +35,13 @@ public class UserController {
 		User u = new User();
 		u.setName("我是谁123");
 		u.setPwd("123456");
-		User u1 = this.userRepository.findByName(u.getUsername());
+		User u1 = this.userService.findUserByName(u.getUsername());
 		if(null != u1)
 		{
 			 return "name complicated!";
 		}
 		
-		this.userRepository.save(u);
+		this.userService.saveUser(u);
 		return "saved";
     }
 	
@@ -48,7 +50,7 @@ public class UserController {
     String home(@PathVariable("userName") String userName)
     {
 		
-			this.userRepository.findByName(userName);
+			this.userService.findUserByName(userName);
 		
         return "Hello World!xyz";
     }
@@ -63,7 +65,7 @@ public class UserController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String userName(Model model)
 	{
-		List<User> userList = this.userRepository.findAll();
+		List<User> userList = this.userService.findAllUsers();
 		model.addAttribute("users", userList);
 		for(User u : userList)
 		{

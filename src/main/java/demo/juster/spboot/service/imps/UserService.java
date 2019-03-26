@@ -1,6 +1,5 @@
 package demo.juster.spboot.service.imps;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -58,10 +57,54 @@ public class UserService implements IUserService {
 				log.info("user role saved" + user.getId());
 			}
 		}
-		
-		
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED) 
+	public void deleteUser(User u) {
+		List<Role> roles = u.getRoles();
+		if(null != roles)
+		{
+			for(Role r :roles)
+			{
+				UserRole ur = new UserRole();
+				ur.setUser_id(u.getId());
+				ur.setRole_id(r.getId());
+				urmp.delete(ur);
+				log.info("user role delete" + u.getId());
+				rmp.delete(r);
+				log.info("role delete" + u.getId());
+				
+			}
+		}
+		ump.delete(u);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED) 
+	public void deleteUserById(Long id) {
+		User u = findUserById(id);
+		deleteUser(u);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED) 
+	public void updateUser(User u) {
+		ump.update(u);
 		
 	}
+
+	@Override
+	public User findUserById(Long id) {
+		return ump.findById(id);
+	}
+
+	@Override
+	public User findUserByName(String name) {
+		return ump.findByName(name);
+	}
 	
+	
+	@Override
+	public List<User> findAllUsers() {
+		return ump.findAll();
+	}
 	
 }
