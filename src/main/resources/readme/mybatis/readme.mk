@@ -25,3 +25,9 @@ delete ur from user_roles ur where ur.user_id=1 and ur.roles_id=2;
 ### 多表连接删除功能
 [reference](https://www.jb51.net/article/107813.htm)
 
+### mybatis-config.xml模版
+[properties resource="jdbc.properties"](https://blog.csdn.net/wf3612581/article/details/81842590)  
+[settings enviroment](https://blog.csdn.net/yang5726685/article/details/79054728)  
+[读取 application.properties文件中配置信息](https://www.cnblogs.com/pangkang/p/9288698.html)  
+
+
