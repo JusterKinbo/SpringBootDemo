@@ -3,10 +3,10 @@ package demo.juster.spboot.error;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.naming.AuthenticationException;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

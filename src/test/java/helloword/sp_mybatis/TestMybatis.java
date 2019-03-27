@@ -1,7 +1,5 @@
 package helloword.sp_mybatis;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +68,7 @@ public class TestMybatis {
 			ussv.saveUser(user);
 		}catch(Exception e)
 		{
-			
+			log.info("");
 			System.out.println(e);
 		}
 		
@@ -81,9 +79,9 @@ public class TestMybatis {
 	public void testUserRole()
 	{
 	  UserRole ur = new UserRole();
-	  ur.setRole_id((long) 2);
-	  ur.setUser_id((long) 1);
-//	  urmp.save(ur);
+	  ur.setRole_id((long) 4);
+	  ur.setUser_id((long) 19);
+	  urmp.save(ur); 
 //	  urmp.delete(ur);
 	}
 	
@@ -100,17 +98,17 @@ public class TestMybatis {
 		 	}
 	    }
 
-//	    @Test
+	    @Test
 	    public void testUser(){
-	    	User u = ump.findByName("juster12");
-		 	System.out.println("findByName" + u);
-		 	u = ump.findById((long) 1);
+	    	User u = ump.findByName("lala4");
+//		 	System.out.println("findByName" + u);
+		 	u = ump.findById((long) 19);
 		 	System.out.println("findById" + u);
-		 	List<User> ul = ump.findAll();
-		 	for(User u1 : ul)
-		 	{
-		 		System.out.println("findAll"+u1);
-		 	}
+//		 	List<User> ul = ump.findAll();
+//		 	for(User u1 : ul)
+//		 	{
+//		 		System.out.println("findAll"+u1);
+//		 	}
 		 	
 	        TestCase.assertEquals(1, 1);
 	    }

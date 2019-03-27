@@ -74,7 +74,7 @@ public class GlobelErrorController extends AbstractErrorController{
 	public Map<String, Object> error(HttpServletRequest request) {
 		Map<String, Object> body = getErrorAttributes(request,
 				isIncludeStackTrace(request, MediaType.ALL));
-		HttpStatus status = getStatus(request);
+//		HttpStatus status = getStatus(request);
 		logHandler(body);
 		 Map<String, Object> map = new HashMap<String, Object>();
 	        map.put("code",""+ body.get("status"));

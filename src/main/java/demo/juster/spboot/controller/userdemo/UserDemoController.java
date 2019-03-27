@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import demo.juster.spboot.mapper.RoleMapper;
-import demo.juster.spboot.mapper.UserMapper;
 import demo.juster.spboot.pojo.user.Role;
 import demo.juster.spboot.pojo.user.User;
 import demo.juster.spboot.service.interfaces.IUserService;

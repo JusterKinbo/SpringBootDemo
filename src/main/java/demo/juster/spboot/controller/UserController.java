@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import demo.juster.spboot.mapper.UserMapper;
+
 import demo.juster.spboot.pojo.user.User;
-import demo.juster.spboot.service.imps.UserService;
 import demo.juster.spboot.service.interfaces.IUserService;
 
 @Controller

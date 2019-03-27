@@ -6,7 +6,7 @@
         <id column="id" jdbcType="BIGINT" javaType="long" property="id" />
         <result column="username" jdbcType="VARCHAR" javaType="string" property="name" />
         <result column="pwd" jdbcType="VARCHAR" javaType="string" property="pwd" />
-        <collection column="{roleId=roles_id}" select="getRoles" property="roles" ofType="Role" > 
+        <collection column="{userId=id}" select="getRoles" property="roles" ofType="Role" > 
    		</collection>
     </resultMap>
     
@@ -23,16 +23,16 @@
     
     <select id="getRoles"  resultMap="RoleMap">
 	    select id,rolename
-	    from role r
-	    where  r.ID = #{roleId,jdbcType =BIGINT};
+	    from role r,user_roles ur 
+	    where ur.user_id = #{userId} and  r.id = ur.roles_id
 	</select>
  
     <select id="findById" resultMap="UserMap">
-        select u.id,ur.roles_id,u.username,u.pwd from user u,user_roles ur where u.id = #{id} and ur.user_id = u.id
+        select u.id,u.username,u.pwd from user u where u.id = #{id}
     </select>
     
     <select id="findByName" resultMap="UserMap">
-    	select u.id,ur.roles_id,u.username,u.pwd from user u,user_roles ur where u.username = #{name} and ur.user_id = u.id
+    	select u.id,u.username,u.pwd from user u where u.username = #{name}
     </select>
 
 	  <select id="findAll" resultMap="UserMapSimple">

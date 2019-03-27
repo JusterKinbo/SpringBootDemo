@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import demo.juster.spboot.pojo.user.User;
-import demo.juster.spboot.service.imps.UserService;
 import demo.juster.spboot.service.interfaces.IUserService;
 
 
