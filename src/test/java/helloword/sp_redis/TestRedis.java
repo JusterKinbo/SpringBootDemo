@@ -4,7 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import demo.juster.spboot.SampleController;
@@ -13,15 +15,25 @@ import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+
 @Slf4j
 @RunWith(SpringRunner.class)   
 @SpringBootTest(classes={SampleController.class})// 指定启动类
 public class TestRedis {
 
+	@Test
+	public void testJedisTemplate()
+	{
+	ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(
+            "classpath:/config/spring-redis-sentinel.xml");
+    RedisTemplate<String, String> template = (RedisTemplate<String, String>) context.getBean("redisTemplate");
+    template.opsForValue().set("aaa", "aaabbb");
+    System.err.println(template.opsForValue().get("aaa"));
+    }
 	/**
      * 结合spring的redis单机版测试
      */
-    @Test
+//    @Test
     public void testSpringSingle(){
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/config/applicationContext-jedis.xml");
         JedisClient jedisclient = (JedisClient)context.getBean("jedisClientPool");
