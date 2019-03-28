@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.ErrorPageRegistrar;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import demo.juster.spboot.error.ErrorConfig;
 @SpringBootApplication
 @ComponentScan("demo.juster.spboot")//因默认扫描启动类目录，因此加入componentScan
 @MapperScan("demo.juster.spboot.mapper") //扫描的mapper
+@ImportResource("classpath:/config/applicationContext-jedis.xml") //导入xml配置项
 @ServletComponentScan//自定义filter加入
 public class SampleController {
 	

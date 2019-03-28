@@ -56,6 +56,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+         <!-- jedis -->
+        <dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
         <!-- 日志 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>

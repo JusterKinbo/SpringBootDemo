@@ -14,6 +14,7 @@ import demo.juster.spboot.mapper.UserRoleMapper;
 import demo.juster.spboot.pojo.user.Role;
 import demo.juster.spboot.pojo.user.User;
 import demo.juster.spboot.pojo.user.UserRole;
+import demo.juster.spboot.redis.interfaces.JedisClient;
 import demo.juster.spboot.service.interfaces.IUserService;
 import demo.juster.spboot.util.MD5Util;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,9 @@ public class UserService implements IUserService {
 	
 	@Autowired
 	UserRoleMapper urmp;
+	
+	@Autowired
+	JedisClient jedisClent;
 
 	@Transactional(propagation=Propagation.REQUIRED) 
 	public void saveUser(User u) {
@@ -98,6 +102,9 @@ public class UserService implements IUserService {
 
 	@Override
 	public User findUserByName(String name) {
+		jedisClent.set("findByName", "findByName"+name);
+		String result = jedisClent.get("findByName");
+		log.info(result);
 		return ump.findByName(name);
 	}
 	
