@@ -20,10 +20,16 @@ redis-cli -p 端口号 shutdown
 
 ### redis 单机、多集群
 [Jedis整合spring的使用](https://blog.csdn.net/weixin_38497513/article/details/81360848)
-[redis单机及其集群的搭建](https://www.cnblogs.com/mouseIT/p/5288204.html)
+[redis单机及其集群的搭建 -> 完美](https://www.cnblogs.com/mouseIT/p/5288204.html)
 [单机多实例](https://www.cnblogs.com/lgeng/p/6623336.html)
 
 ### SpringBoot整合redis哨兵主从服务
 [主从配置](https://www.cnblogs.com/zwcry/p/9156243.html)  
 [哨兵配置](https://www.cnblogs.com/zwcry/p/9134721.html)    
-[SpringBoot整合redis哨兵主从服务](https://www.cnblogs.com/zwcry/p/9156243.html)  c
+[SpringBoot整合redis哨兵主从服务](https://www.cnblogs.com/zwcry/p/9156243.html)  
+[springboot中配置主从redis](https://www.cnblogs.com/HendSame-JMZ/p/7722104.html)
+
+### spring-data-redis使用哨兵配置一主多从
+[reference](https://www.cnblogs.com/qlong8807/p/5893364.html)
+[Spring boot 配置 Redis哨兵模式](https://blog.csdn.net/qq_20698983/article/details/83056689)
+[Spring boot 配置 Redis集群模式](https://blog.csdn.net/qq_20698983/article/details/83056626)
